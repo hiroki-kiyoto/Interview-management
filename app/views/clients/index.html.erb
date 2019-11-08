@@ -1,0 +1,36 @@
+<header>
+  <nav class="navbar navbar-light bg-light">
+    <a class="navbar-brand mb-0 h1" href="/">受講生一覧</a>
+    <div class="bottons">
+      <%= search_form_for @q, url: "/mentors/#{@mentor.id}/clients"  do |f| %>
+        <%= f.label :name_cont, "受講生名：" %>
+        <%= f.search_field :name_cont %>
+        <%= f.label :period_eq, "受講期：" %>
+        <%= f.number_field :period_eq %>
+        <%= f.submit "検索",class: "btn btn-primary"%>
+      <% end %>
+    </div>
+    <div class="bottons">
+      <%= link_to '受講生登録', "/mentors/#{@mentor.id}/clients/new", remote: true, class: "btn btn-primary"  %>
+    </div>
+  </nav>
+</header>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>名前</th>
+      <th>受講期</th>
+      <th>拠点</th>
+      <th>管理者ページ</th>
+      <th>進捗表</th>
+      <th>編集</th>
+      <th>削除</th>
+      <th>面談記録</th>
+    </tr>
+  </thead>
+  <tbody class="product-index">
+    <%= render "index" %>
+  </tbody>   
+</table>
+<%= paginate @clients %>
+<div id="product-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>

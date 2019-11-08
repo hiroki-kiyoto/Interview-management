@@ -1,0 +1,2 @@
+class Firstinterview < ApplicationRecord
+end

@@ -1,0 +1,39 @@
+<h1>初回面談ページ</h1>
+<%= form_with(model:  [@mentor, @client, @firstinterview], local: true) do |form| %>
+  <form>
+    <div class="form-group">
+      <label for="recipient-name" class="col-form-label">職業:</label>
+      <%= form.text_field :skill, id: "recipient-name", class: "form-control" %><br>
+    </div>
+    <div class="form-group">
+      <label for="exampleFormControlTextarea1">理想の受講期間:</label><br>
+      <%= form.number_field :courseperiod, id: "recipient-name", class: "form-control" %><br>
+    </div>
+    <div class="form-group">
+      <label for="exampleFormControlTextarea1">週の平均学習時間:</label><br>
+      <%= form.number_field :weeklystudyhours, id: "recipient-name", class: "form-control" %><br>
+    </div>
+    <div class="form-group">
+      <label for="recipient-name" class="col-form-label">受講理由:</label>
+      <%= form.text_area :goal ,id: "recipient-name", class: "form-control",rows: "3" %><br>
+    </div>
+    <div class="form-group">
+      <label for="exampleFormControlTextarea1">対応メモ:</label>
+      <%= form.text_area :memo ,id: "recipient-name", class: "form-control",rows: "3" %><br>
+    </div>
+    <div class="form-group">
+      <label for="exampleFormControlTextarea1">次回までの目標:</label>
+      <%= form.text_area :nextgoal ,id: "recipient-name", class: "form-control",rows: "3" %><br>
+    </div>
+    
+    <div class="form-group">
+      <label for="exampleFormControlTextarea1">次回面談の開始時間:</label><br>
+      <%= form.datetime_field :starttime %><br>
+    </div>
+    <div class="form-group">
+      <label for="exampleFormControlTextarea1">次回面談の終了時間:</label><br>
+      <%= form.datetime_field :endtime %><br>
+    </div>
+      <%= form.submit '投稿する' %>
+  </form>
+<% end %>

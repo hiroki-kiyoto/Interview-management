@@ -1,0 +1,178 @@
+<header>
+  <nav class="navbar navbar-light bg-light">
+    <a class="navbar-brand mb-0 h1" href="/mentors/<%=@mentor.id%>/clients"><%= @client.name%>様のページ</a>
+    <div class="bottons">
+      <%= link_to "受講生一覧", mentor_clients_path, class: "btn btn-primary"  %>
+    </div>
+  </nav>
+</header>
+<div class="panel panel-default">
+  <div class="intervires">
+    <h2 class="intervire_name">初回面談</h2>
+    <%= link_to "初回面談記録" ,"/mentors/#{@mentor.id}/clients/#{@client.id}/firstinterviews/new" ,class: "btn btn-primary"%>
+  </div>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>職業</th>
+        <th>予定の受講期間</th>
+        <th>週の平均学習時間</th>
+        <th>受講目的</th>
+        <th>対応メモ</th>
+        <th>次回目標</th>
+        <th>次回面談日</th>
+        <th>編集</th>
+        <th>削除</th>
+        <th>詳細</th>
+      </tr>
+    </thead>
+    <% @firstinterviews.each do |firstinterview| %>
+    <tbody class="product-index">
+      <tr>
+        <th><%= firstinterview.skill %></th>
+        <th><%= firstinterview.courseperiod %></th>
+        <th><%= firstinterview.weeklystudyhours %></th>
+        <th><%= firstinterview.goal %></th>
+        <th><%= firstinterview.memo %></th>
+        <th><%= firstinterview.nextgoal %></th>
+        <th><%= firstinterview.starttime.strftime("%Y-%m-%d %H:%M~") %></th>
+        <th><%= link_to "編集", "/mentors/#{@mentor.id}/clients/#{@client.id}/firstinterviews/#{firstinterview.id}/edit" %></th>
+        <th><%= link_to "削除", "/mentors/#{@mentor.id}/clients/#{@client.id}/firstinterviews/#{firstinterview.id}", method: :delete, remote: true %></th>
+        <th>
+          <a data-toggle="modal" data-target="#myModal">詳細</a>
+        </th>
+      </tr>
+    </tbody>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
+              <span aria-hidden="true">&times;</span>
+          </button>
+          <h3>初回面談</h3>
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">職業</h5>
+          </div>
+          <div class="modal-body">
+            <p><%= firstinterview.skill %></p>
+          </div>
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">予定の受講期間</h5>
+          </div>
+          <div class="modal-body">
+            <p><%= firstinterview.courseperiod %></p>
+          </div>
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">週の平均学習時間</h5>
+          </div>
+          <div class="modal-body">
+            <p><%= firstinterview.weeklystudyhours %></p>
+          </div>
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">受講目的</h5>
+          </div>
+          <div class="modal-body">
+            <p><%= firstinterview.goal %></p>
+          </div>
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">対応メモ</h5></h5>
+          </div>
+          <div class="modal-body">
+            <p><%= firstinterview.memo %></p>
+          </div>
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">次回面談までの目標</h5></h5>
+          </div>
+          <div class="modal-body">
+            <p><%= firstinterview.nextgoal %></p>
+          </div>
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">次回面談日</h5></h5>
+          </div>
+          <div class="modal-body">
+            <p><%= firstinterview.starttime.strftime("%Y-%m-%d %H:%M") %> ~ <%= firstinterview.endtime.strftime("%Y-%m-%d %H/%M") %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </table>
+</div>
+
+
+<div class="panel panel-default">
+  <div class="intervires">
+    <h2 class="intervire_name">定期面談</h2>
+    <%= link_to "定期面談記録" ,"/mentors/#{@mentor.id}/clients/#{@client.id}/regularinterviews/new" ,class: "btn btn-primary"%>
+  </div>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>現状の学習状況</th>
+        <th>週の平均学習時間</th>
+        <th>対応メモ</th>
+        <th>次回目標</th>
+        <th>次回面談日</th>
+        <th>編集</th>
+        <th>削除</th>
+        <th>詳細</th>
+      </tr>
+    </thead>
+    <% @regularinterviews.each do |regularinterview| %>
+    <tbody class="product-index">
+      <tr>
+        <th><%= regularinterview.status %></th>
+        <th><%= regularinterview.weeklystudyhours %></th>
+        <th><%= regularinterview.memo %></th>
+        <th><%= regularinterview.nextgoal %></th>
+        <th><%= regularinterview.starttime.strftime("%Y-%m-%d %H:%M~") %></th>
+        <th><%= link_to "編集", "/mentors/#{@mentor.id}/clients/#{@client.id}/regularinterviews/#{regularinterview.id}/edit" %></th>
+        <th><%= link_to "削除", "/mentors/#{@mentor.id}/clients/#{@client.id}/regularinterviews/#{regularinterview.id}", method: :delete, remote: true %></th>
+        <th>
+          <a data-toggle="modal" data-target="#myModal2">詳細</a>
+        </th>
+      </tr>
+    </tbody>
+    <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
+              <span aria-hidden="true">&times;</span>
+          </button>
+          <h3>定期面談</h3>
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">現状の学習状況</h5>
+          </div>
+          <div class="modal-body">
+            <p><%= regularinterview.status %></p>
+          </div>
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">週の平均学習時間</h5>
+          </div>
+          <div class="modal-body">
+            <p><%= regularinterview.weeklystudyhours %></p>
+          </div>
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">対応メモ</h5></h5>
+          </div>
+          <div class="modal-body">
+            <p><%= regularinterview.memo %></p>
+          </div>
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">次回面談までの目標</h5></h5>
+          </div>
+          <div class="modal-body">
+            <p><%= regularinterview.nextgoal %></th></p>
+          </div>
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">次回面談日</h5></h5>
+          </div>
+          <div class="modal-body">
+            <p><%= regularinterview.starttime.strftime("%Y-%m-%d %H/%M") %>~<%= regularinterview.starttime.strftime("%Y-%m-%d %H/%M") %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </table>
+</div>

@@ -1,0 +1,32 @@
+<h1>定期面談ページ</h1>
+<%= form_with(model:  [@mentor, @client, @regularinterview], local: true) do |form| %>
+  <form>
+     <div class="form-group">
+      <label for="exampleFormControlSelect1">受講生の進捗状況:</label><br>
+       <%= form.select :status, [["進捗は予定以上に進んでいる", ""], ["進捗は予定通り", "進捗は予定通り"],  ["進捗が予定通りに進んでいない", "進捗が予定通りに進んでいない"]],class: "custom-select my-1 mr-sm-2",id: "inlineFormCustomSelectPref", :prompt => "選択してください" %>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="exampleFormControlTextarea1">週の学習平均時間:</label><br>
+      <%= form.number_field :weeklystudyhours, id: "recipient-name", class: "form-control" %><br>
+    </div>
+    <div class="form-group">
+      <label for="exampleFormControlTextarea1">対応メモ:</label>
+      <%= form.text_area :memo ,id: "recipient-name", class: "form-control",rows: "3" %><br>
+    </div>
+    <div class="form-group">
+      <label for="exampleFormControlTextarea1">次回までの目標:</label>
+      <%= form.text_area :nextgoal ,id: "recipient-name", class: "form-control",rows: "3" %><br>
+    </div>
+    
+    <div class="form-group">
+      <label for="exampleFormControlTextarea1">次回面談の開始時間:</label><br>
+      <%= form.datetime_field :starttime %><br>
+    </div>
+    <div class="form-group">
+      <label for="exampleFormControlTextarea1">次回面談の終了時間:</label><br>
+      <%= form.datetime_field :endtime %><br>
+    </div>
+      <%= form.submit '投稿する' %>
+  </form>
+<% end %>

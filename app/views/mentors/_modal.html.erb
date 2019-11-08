@@ -1,0 +1,27 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <%= form_for(@mentor, remote: true) do |f| %>
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">登録情報</h4>
+      </div>
+      <div class="modal-body">
+        <div class="field">
+          <label for="recipient-name" class="col-form-label">名前:</label>
+          <%= f.text_field :name, id: "recipient-name", class: "form-control" %><br>
+        </div>
+        <div class="field">
+          <label for="recipient-name" class="col-form-label">拠点名:</label><br>
+          <%= f.select :locate, [["渋谷校", "渋谷校"], ["東京駅前校", "東京駅前校"],  ["池袋校", "池袋校"], ["新宿校", "新宿校"],["梅田校", "梅田校"],["名古屋校", "名古屋校"],["リモート校", "リモート校"]], :prompt => "選択してください" %>
+        </div>
+      </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <%= f.submit '登録する',  class: "btn btn-primary"%>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,9 @@
+<% @mentors.each do |mentor| %>
+  <tr>
+    <th><%= mentor.name %></th>
+    <th><%= mentor.locate %></th>
+    <th><%= link_to '編集', edit_mentor_path(mentor), remote: true %></th>
+    <th><%= link_to "削除", "/mentors/#{mentor.id}", method: :delete, remote: true %></th>
+    <th><%= link_to "担当受講生一覧", "/mentors/#{mentor.id}/clients" %></th>
+  </tr>
+<% end %>  

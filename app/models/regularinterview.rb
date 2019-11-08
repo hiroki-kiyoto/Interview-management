@@ -1,0 +1,2 @@
+class Regularinterview < ApplicationRecord
+end

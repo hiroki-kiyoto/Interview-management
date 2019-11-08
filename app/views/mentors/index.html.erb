@@ -1,0 +1,32 @@
+<header>
+  <nav class="navbar navbar-light bg-light">
+    <a class="navbar-brand mb-0 h1" href="/">メンター一覧</a>
+    <div class="bottons">
+      <%= search_form_for @q do |f| %>
+        <%= f.label :locate_cont, "拠点名：" %>
+        <%= f.select :locate_cont, [["渋谷校", "渋谷校"], ["東京駅前校", "東京駅前校"],  ["池袋校", "池袋校"], ["新宿校", "新宿校"],["梅田校", "梅田校"],["名古屋校", "名古屋校"],["リモート校", "リモート校"]], :prompt => "選択してください" %>
+        <%= f.submit "検索",class: "btn btn-primary"%>
+      <% end %>
+    </div>
+    <div class="bottons">
+      <%= link_to 'メンター登録', new_mentor_path, remote: true, class: "btn btn-primary"  %>
+    </div>
+  </nav>
+</header>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>名前</th>
+      <th>拠点</th>
+      <th>編集</th>
+      <th>削除</th>
+      <th>受講生一覧</th>
+    </tr>
+  </thead>
+  <tbody class="product-index">
+    <%= render "index" %>
+  </tbody>
+</table>
+ <%= paginate @mentors %>
+
+<div id="product-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
