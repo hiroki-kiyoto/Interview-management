@@ -13,48 +13,62 @@ Things you may want to cover:
 
 # DB設計
 
-## projects
+## mentors
 | column | type |option |
 |----|---- |----|
 | id |  |  |
-| name | string | null:false |
+| name | text | |
+| locate | text | |
 
 ### Asociation
-has_many :tasks
+has_many :clients
 
-## tasks
+## clients
 | column | type |option |
 |----|---- |----|
 | id |  |  |
-| title | string | null:false |
-| deadline | date |  |
-| comment | text |  |
-| project | references | foreign_key |
+| name | text |  |
+| period| integer |  |
+| url |  text|  |
+| progresstable | text |  |
+| mentor_id | integer |  |
 
 ### Asociation
-belongs_to :project 
+has_many :firstinterviews
 
-has_many :task_tags, dependent: :destroy
+has_many :regularinterviews
 
-has_many :tags, through: :task_tags , source: :tags
+belongs_to :mentor
 
-## task_tags
+## firstinterviews
 | column | type |option |
 |----|---- |----|
 | id |  |  |
-| task | references | foreign_key |
-| tag | references | foreign_key |
+| skill | text |  |
+| goal | text | |
+| nextgoal | text | |
+| memo | text | |
+| starttime | datetime | |
+| endtime | datetime | |
+| courseperiod | integer | |
+| weeklystudyhours | integer | |
+| client_id | integer | |
+
 
 ### Asociation
-belongs_to :task
+belongs_to :client
 
-belongs_to :tag
-
-## tags
+## regularinterviews
 | column | type |option |
 |----|---- |----|
 | id |  |  |
-| tags_name | string | null:false |
+| nextgoal | text | |
+| memo | text | |
+| status | text | |
+| starttime | datetime | |
+| endtime | datetime | |
+| weeklystudyhours | integer | |
+| client_id | integer | |
 
 ### Asociation
-has_many :task_tags, dependent: :destroy
+belongs_to :client
