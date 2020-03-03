@@ -17,8 +17,8 @@ Things you may want to cover:
 | column | type |option |
 |----|---- |----|
 | id |  |  |
-| name | text | |
-| locate | text | |
+| name | string | null: false |
+| locate | string | null: false |
 
 ### Asociation
 has_many :clients
@@ -27,11 +27,12 @@ has_many :clients
 | column | type |option |
 |----|---- |----|
 | id |  |  |
-| name | text |  |
-| period| integer |  |
+| name | string | null: false |
+| period| integer | null: false |
 | url |  text|  |
+| locate | string | null: false |
 | progresstable | text |  |
-| mentor_id | integer |  |
+| mentor | references | foreign_key |
 
 ### Asociation
 has_many :firstinterviews
@@ -48,11 +49,11 @@ belongs_to :mentor
 | goal | text | |
 | nextgoal | text | |
 | memo | text | |
-| starttime | datetime | |
-| endtime | datetime | |
+| starttime | datetime | null: false |
+| endtime | datetime | null: false |
 | courseperiod | integer | |
 | weeklystudyhours | integer | |
-| client_id | integer | |
+| client | references | foreign_key |
 
 
 ### Asociation
@@ -65,10 +66,10 @@ belongs_to :client
 | nextgoal | text | |
 | memo | text | |
 | status | text | |
-| starttime | datetime | |
-| endtime | datetime | |
+| starttime | datetime | null: false |
+| endtime | datetime | null: false |
 | weeklystudyhours | integer | |
-| client_id | integer | |
+| client | references | foreign_key |
 
 ### Asociation
 belongs_to :client

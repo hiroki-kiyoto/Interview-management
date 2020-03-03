@@ -10,17 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_26_013439) do
+ActiveRecord::Schema.define(version: 2019_10_26_013427) do
 
   create_table "clients", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.text "name"
-    t.integer "period"
+    t.string "name", null: false
+    t.integer "period", null: false
     t.text "url"
-    t.text "locate"
+    t.string "locate", null: false
     t.text "progresstable"
-    t.integer "mentor_id"
+    t.bigint "mentor_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["mentor_id"], name: "index_clients_on_mentor_id"
   end
 
   create_table "firstinterviews", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -28,18 +29,19 @@ ActiveRecord::Schema.define(version: 2019_10_26_013439) do
     t.text "goal"
     t.text "memo"
     t.text "nextgoal"
-    t.datetime "starttime"
-    t.datetime "endtime"
+    t.datetime "starttime", null: false
+    t.datetime "endtime", null: false
     t.integer "courseperiod"
     t.integer "weeklystudyhours"
-    t.integer "client_id"
+    t.bigint "client_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["client_id"], name: "index_firstinterviews_on_client_id"
   end
 
   create_table "mentors", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.text "name"
-    t.text "locate"
+    t.string "name", null: false
+    t.string "locate", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -48,12 +50,16 @@ ActiveRecord::Schema.define(version: 2019_10_26_013439) do
     t.text "nextgoal"
     t.text "memo"
     t.text "status"
-    t.datetime "starttime"
-    t.datetime "endtime"
+    t.datetime "starttime", null: false
+    t.datetime "endtime", null: false
     t.integer "weeklystudyhours"
-    t.integer "client_id"
+    t.bigint "client_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["client_id"], name: "index_regularinterviews_on_client_id"
   end
 
+  add_foreign_key "clients", "mentors"
+  add_foreign_key "firstinterviews", "clients"
+  add_foreign_key "regularinterviews", "clients"
 end

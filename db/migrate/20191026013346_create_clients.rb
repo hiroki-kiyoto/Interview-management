@@ -1,12 +1,12 @@
 class CreateClients < ActiveRecord::Migration[5.2]
   def change
     create_table :clients do |t|
-      t.text :name
-      t.integer :period
+      t.string :name, null: false
+      t.integer :period, null: false
       t.text :url
-      t.text :locate
+      t.string :locate, null: false
       t.text :progresstable
-      t.integer :mentor_id
+      t.references :mentor,  foreign_key: true
       t.timestamps
     end
   end

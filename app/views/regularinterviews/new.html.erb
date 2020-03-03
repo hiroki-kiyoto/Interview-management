@@ -35,11 +35,11 @@
           </div>
           
           <div class="form-group">
-            <label for="exampleFormControlTextarea1">次回面談の開始時間:</label><br>
+            <label for="exampleFormControlTextarea1">次回面談の開始時間: <span class="badge badge-pill badge-danger">必須</span></label><br>
             <%= form.datetime_field :starttime %><br>
           </div>
           <div class="form-group">
-            <label for="exampleFormControlTextarea1">次回面談の終了時間:</label><br>
+            <label for="exampleFormControlTextarea1">次回面談の終了時間: <span class="badge badge-pill badge-danger">必須</span></label><br>
             <%= form.datetime_field :endtime %><br>
           </div>
             <%= form.submit '投稿する' %>
