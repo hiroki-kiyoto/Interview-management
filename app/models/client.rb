@@ -1,6 +1,6 @@
 class Client < ApplicationRecord
-  has_many :firstinterviews
-  has_many :regularinterviews
+  has_many :firstinterviews, dependent: :destroy
+  has_many :regularinterviews, dependent: :destroy
   belongs_to :mentor
 
   validates :name, presence: true
